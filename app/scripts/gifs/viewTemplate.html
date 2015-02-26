@@ -1,6 +1,8 @@
 <p>GIFS</p>
 <div ng-repeat="image in images">
-  <h4>{{ image.title }}</h4>
+  <h4 ng-keypress="contentEditable($event, image)" contenteditable="true">
+    {{ image.title }}
+  </h4>
   <img ng-src="{{ image.sourceUrl }}" />
   {{ image.user.username }}
   <div ng-click="remove(image.objectId)">

@@ -23,6 +23,14 @@
       );
     };
 
+    var update = function(id, params) {
+      return $http.put(
+        parse.Url + 'classes/gif/' + id,
+        params,
+        parse.config
+      );
+    };
+
     var list = function() {
       return $http({
         headers: parse.config.headers,
@@ -36,6 +44,7 @@
     return {
       add   : add,
       remove: remove,
+      update: update,
       list  : list,
     };
 

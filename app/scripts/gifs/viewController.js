@@ -13,7 +13,6 @@
       gifFactory.list()
        .success( function(data) {
           $scope.images = data.results;
-          console.log(data.results);
         })
         .error( function(data) {
           $scope.err = true;
@@ -21,14 +20,38 @@
         });
     };
 
+
+
     $scope.remove = function(id) {
       gifFactory.remove(id)
         .success( function(data) {
-          console.log(data);
+          for (var i = 0; i < $scope.images.length; i++) {
+            if ($scope.images[i].objectId === id) {
+              $scope.images.splice(i, 1);
+            }
+          }
         })
         .error( function(data) {
           console.log(data);
         });
+    };
+
+
+    $scope.contentEditable = function(e, el) {
+      if (e.which === 13) {
+        e.preventDefault();
+        var oldTitle = el.title;
+        var newTitle = e.currentTarget.innerText;
+        gifFactory.update(el.objectId, { title: newTitle })
+          .success( function(data) {
+            el.title = newTitle;
+            e.currentTarget.blur();
+          })
+          .error( function(data) {
+            
+          });
+        return;
+      }
     };
 
     $scope.load();
