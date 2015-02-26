@@ -4,32 +4,28 @@
 
   angular.module('reaction-gifs')
 
-  .controller('registerController', ['$scope', 'parse', '$http', '$location',
-                             function($scope,   parse,   $http,   $location) {
-
-    // Setup
-    var parseEndpoint = parse.Url + 'users/';
+  .controller('registerController',
+           ['$scope', '$location', 'userFactory',
+    function($scope,   $location,   userFactory) {
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.pw) {
         $scope.err = true;
-        $scope.errMessage = "Passwords have to match!"; 
+        $scope.errMessage = "Passwords have to match!";
         return;
       }
 
       if ($scope.user.password.length < 8) {
         $scope.err = true;
-        $scope.errMessage = "Passwords must be at least 8 characters"; 
+        $scope.errMessage = "Passwords must be at least 8 characters";
         return;
       }
 
-      $http.post(parseEndpoint, $scope.user, parse.config.headers)
+      userFactory.register($scope.user)
         .success( function(data) {
-          console.log(data);
           $location.path('/user');
         })
         .error( function(data) {
-          console.log(data);
           $scope.err = true;
           $scope.errMessage = data.error;
         });

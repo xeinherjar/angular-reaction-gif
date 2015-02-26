@@ -4,27 +4,30 @@
 
   angular.module('reaction-gifs')
 
-  .controller('viewController', ['$scope', 'parse', '$http', '$location',
-                          function($scope,   parse,   $http,   $location) {
+  .controller('viewController', 
+           ['$scope', 'parse', '$location', 'gifFactory',
+    function($scope,   parse,   $location,   gifFactory) {
 
-    // Setup
-    var parseEndpoint = parse.Url + 'classes/gif';
 
     $scope.load = function() {
-      //$http.get(parseEndpoint, parse.CONFIG)
-      $http({
-        headers: parse.config.headers,
-        url: parseEndpoint,
-        method: 'GET',
-        params: {'include' : 'user'},
-      })
-        .success( function(data) {
+      gifFactory.list()
+       .success( function(data) {
           $scope.images = data.results;
-
+          console.log(data.results);
         })
         .error( function(data) {
           $scope.err = true;
           $scope.errMessage = data.error;
+        });
+    };
+
+    $scope.remove = function(id) {
+      gifFactory.remove(id)
+        .success( function(data) {
+          console.log(data);
+        })
+        .error( function(data) {
+          console.log(data);
         });
     };
 

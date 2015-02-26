@@ -4,23 +4,39 @@
 
   angular.module('reaction-gifs')
 
-  .controller('addController', ['$scope', 'parse', '$http',
-                        function($scope,   parse,   $http) {
+  .controller('addController', 
+           ['$scope', 'gifFactory', '$location',
+    function($scope,   gifFactory,   $location) {
 
-    // Setup
-    var parseEndpoint = parse.Url + 'classes/gif/';
+    $scope.reaction = {
+      title : "",
+      sourceUrl : "",
+    };
 
     $scope.add = function() {
-      $http.post(parseEndpoint, $scope.reaction, parse.config.headers)
+      if ($scope.reaction.title.length === 0) { 
+        $scope.err = true;
+        $scope.errMessage = 'A title is required';
+        return;
+      }
+
+      if ($scope.reaction.sourceUrl.length === 0) {
+        $scope.err = true;
+        $scope.errMessage = 'A URL is required';
+        return;
+      }
+
+      gifFactory.add($scope.reaction)
         .success( function(data) {
-          console.log("yay!");
-          console.log(data);
+          $location.post('/view');
         })
         .error( function(data) {
           console.log("Boo :(");
           console.log(data);
         });
     };
+
+
 
 
   }
