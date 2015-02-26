@@ -1,3 +1,5 @@
-## Yo, I'm a Readme
+## Homework 019
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+Small webapp/site to help teach us Angular.
+
+Using Parse.com as the backend.
