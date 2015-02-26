@@ -16,27 +16,27 @@
 
     $routeProvider.when('/', {
       controller : 'homeController',
-      templateUrl: 'scripts/templates/homeTemplate.html',
+      templateUrl: 'scripts/home/homeTemplate.html',
     });
 
     $routeProvider.when('/add', {
       controller : 'addController',
-      templateUrl: 'scripts/templates/addTemplate.html',
+      templateUrl: 'scripts/gifs/addTemplate.html',
     });
 
     $routeProvider.when('/view', {
       controller : 'viewController',
-      templateUrl: 'scripts/templates/viewTemplate.html',
+      templateUrl: 'scripts/gifs/viewTemplate.html',
     });
 
     $routeProvider.when('/login', {
       controller : 'loginController',
-      templateUrl: 'scripts/templates/loginTemplate.html',
+      templateUrl: 'scripts/users/loginTemplate.html',
     });
 
     $routeProvider.when('/register', {
       controller : 'registerController',
-      templateUrl: 'scripts/templates/registerTemplate.html',
+      templateUrl: 'scripts/users/registerTemplate.html',
     });
 
     $routeProvider.otherwise({
