@@ -7,8 +7,12 @@
   .constant({
     parse: {
       Url   : 'https://api.parse.com/1/',
-      AppId : 'ZEbfl7ZohesOvsQUuFnDe0JIau2QNXRiSGwMAyUR',
-      ApiKey: '0o94RdieLr34hAXQxpnfFENWMdbOO35OKAdKEUha',
+      config: {
+        headers: {
+          'X-Parse-Application-Id': 'ZEbfl7ZohesOvsQUuFnDe0JIau2QNXRiSGwMAyUR',
+          'X-Parse-REST-API-Key'  : '0o94RdieLr34hAXQxpnfFENWMdbOO35OKAdKEUha',
+        },
+      }
     }
   })
 

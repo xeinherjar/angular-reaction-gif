@@ -7,7 +7,7 @@
   .controller('homeController', ['$scope', 'parse', '$http',
                          function($scope,   parse,   $http) {
 
-    console.log(parse);
+    console.log("homeController");
 
     }
   ]);

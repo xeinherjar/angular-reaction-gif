@@ -1,6 +1,6 @@
 <p>GIFS</p>
 <div ng-repeat="image in images">
   {{ image.title }}
-  <img src="{{ image.sourceUrl }}" />
-  {{ image.user }}
+  <img ng-src="{{ image.sourceUrl }}" />
+  {{ image.user.username }}
 </div>

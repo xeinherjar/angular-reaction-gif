@@ -4,18 +4,16 @@
 
   angular.module('reaction-gifs')
 
-  .controller('loginController', ['$scope', 'parse', '$http', '$location',
-                          function($scope,   parse,   $http,   $location) {
+  .factory('userFactory',
+           ['parse', '$http', '$location',
+    function(parse,   $http,   $location) {
 
-    // Setup
-    var parseEndpoint = parse.Url + 'login';
-
-    $scope.login = function() {
+    var login = function(params) {
       $http({
         headers: parse.config.headers,
         url: parseEndpoint,
         method: 'GET',
-        params: $scope.user,
+        params: params,
       })
         .success( function(data) {
           console.log("yay!");
@@ -24,15 +22,24 @@
         .error( function(data) {
           console.log("Boo :(");
           console.log(data);
-          $scope.err = true;
-          $scope.errMessage = data.error;
+          //$scope.err = true;
+          //$scope.errMessage = data.error;
         });
+
+
     };
 
 
-  }
-  ]);
 
+
+
+
+    return {
+      login: login
+    };
+
+    }
+  ]);
 
 
 }());

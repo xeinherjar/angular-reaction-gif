@@ -9,8 +9,6 @@
 
     // Setup
     var parseEndpoint = parse.Url + 'users/';
-    $http.defaults.headers.common['X-Parse-Application-Id'] = parse.AppId;
-    $http.defaults.headers.common['X-Parse-REST-API-Key'] = parse.ApiKey;
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.pw) {
@@ -25,7 +23,7 @@
         return;
       }
 
-      $http.post(parseEndpoint, $scope.user)
+      $http.post(parseEndpoint, $scope.user, parse.config.headers)
         .success( function(data) {
           console.log(data);
           $location.path('/user');
