@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>019</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body ng-app="reaction-gifs">
+    <div class="nav-container">
+      <ul class="nav">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#/view">View</a></li>
+        <li><a href="#/add">Add</a></li>
+        <li><a href="#/login">Login</a></li>
+        <li><a href="#/register">Register</a></li>
+      </ul>
+    </div>
+    <div class="hero-unit">
+      <h1>Reaction Gifs</h1>
+      <div class="container" ng-view>
+      </div>
+   </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/addController.js"></script>
+        <script src="scripts/controllers/loginController.js"></script>
+        <script src="scripts/controllers/registerController.js"></script>
+        <script src="scripts/controllers/viewController.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
