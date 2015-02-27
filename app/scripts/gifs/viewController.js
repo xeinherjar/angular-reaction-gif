@@ -5,9 +5,10 @@
   angular.module('reaction-gifs')
 
   .controller('viewController', 
-           ['$scope', 'parse', '$location', 'gifFactory',
-    function($scope,   parse,   $location,   gifFactory) {
+           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore',
+    function($scope,   parse,   $location,   gifFactory,   $cookieStore) {
 
+    $scope.userId = $cookieStore.get('userId');
 
     $scope.load = function() {
       gifFactory.list()
