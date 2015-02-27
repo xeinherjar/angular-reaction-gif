@@ -24,3 +24,57 @@ body {
     letter-spacing: -1px;
   }
 }
+
+a { 
+  text-decoration: none;
+}
+
+.nav-container {
+  overflow: auto;
+  background-color: black;
+  a {
+    color: white;
+  }
+}
+
+.nav {
+  margin: 0;
+  li {
+    padding: 20px;
+    display: inline-block;
+    
+    &:hover {
+      background-color: #aaa;
+    }
+  }
+}
+
+.uploader {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  
+  &:before {
+    content: "uploaded by: ";
+    font-weight: normal;
+  }
+}
+
+.del-btn {
+  display: inline-block;
+  background-color: #7F1C0B;
+  padding: 5px 8px;
+  color: white;
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #CC2C11;
+  }
+}
+
+h4 {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10px 0;
+}

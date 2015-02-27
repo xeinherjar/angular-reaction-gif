@@ -5,12 +5,17 @@
   angular.module('reaction-gifs')
 
   .controller('addController', 
-           ['$scope', 'gifFactory', '$location',
-    function($scope,   gifFactory,   $location) {
+           ['$scope', 'gifFactory', '$location', '$cookieStore',
+    function($scope,   gifFactory,   $location,   $cookieStore) {
 
     $scope.reaction = {
       title : "",
       sourceUrl : "",
+      user: {
+        __type: 'Pointer',
+        className: '_User',
+        objectId: $cookieStore.get('userId'), 
+      }    
     };
 
     $scope.add = function() {
@@ -28,7 +33,7 @@
 
       gifFactory.add($scope.reaction)
         .success( function(data) {
-          $location.post('/view');
+          $location.path('/view');
         })
         .error( function(data) {
           console.log("Boo :(");

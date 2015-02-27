@@ -9,9 +9,9 @@
     {{ image.title }}
   </h4>
   <img ng-src="{{ image.sourceUrl }}" />
-  {{ image.user.username }}
+  <span class="uploader">{{ image.user.username }}</span>
   <div ng-if="image.user.objectId === userId"
-    ng-click="remove(image.objectId)">
+    ng-click="remove(image.objectId)" class="del-btn">
     Delete
   </div>
 </div>

@@ -22,14 +22,14 @@
     <!-- endbuild -->
   </head>
   <body ng-app="reaction-gifs">
-    <div class="nav-container">
+    <div class="nav-container" ng-controller="navController">
       <ul class="nav">
-        <li><a href="#/">Home</a></li>
-        <li><a href="#/view">View</a></li>
-        <li><a href="#/add">Add</a></li>
-        <li><a href="#/login">Login</a></li>
-        <li><a href="#/register">Register</a></li>
-        <li><a href="#/logout">Logout</a></li>
+        <a href="#/"><li>Home</li></a>
+        <a href="#/view"><li>View</li></a>
+        <a href="#/add"><li>Add</li></a>
+        <a href="#/login" ng-hide="loggedIn"><li>Login</li></a>
+        <a href="#/register" ng-hide="loggedIn"><li>Register</li></a>
+        <a href="#/logout" ng-show="loggedIn" ng-click="logout()"><li>Logout</li></a>
       </ul>
     </div>
     <div class="hero-unit">
@@ -49,6 +49,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/home/nav.controller.js"></script>
     <script src="scripts/home/homeController.js"></script>
     <script src="scripts/users/loginController.js"></script>
     <script src="scripts/users/registerController.js"></script>

@@ -4,10 +4,9 @@
 
   angular.module('reaction-gifs')
 
-  .controller('homeController', ['$scope', 'parse', '$http',
-                         function($scope,   parse,   $http) {
+  .controller('homeController', ['$scope', 'parse', '$http', '$location',
+                         function($scope,   parse,   $http,   $location) {
 
-    console.log("homeController");
 
     }
   ]);
