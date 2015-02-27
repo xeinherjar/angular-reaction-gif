@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>019</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body ng-app="reaction-gifs">
+    <div class="nav-container" ng-controller="navController">
+      <ul class="nav">
+        <a href="#/"><li>Home</li></a>
+        <a href="#/view"><li>View</li></a>
+        <a href="#/add"><li>Add</li></a>
+        <a href="#/login" ng-hide="loggedIn"><li>Login</li></a>
+        <a href="#/register" ng-hide="loggedIn"><li>Register</li></a>
+        <a href="#/logout" ng-show="loggedIn" ng-click="logout()"><li>Logout</li></a>
+      </ul>
+    </div>
+    <div class="hero-unit">
+      <h1>Reaction Gifs</h1>
+      <div class="container" ng-view>
+      </div>
+   </div>
+
+    <script src="scripts/vendor.js"></script>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
