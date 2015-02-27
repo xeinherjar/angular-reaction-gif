@@ -36,7 +36,9 @@
         headers: parse.config.headers,
         url: parse.Url + 'classes/gif',
         method: 'GET',
-        params: {'include' : 'user'},
+        params: { 'include' : 'user',
+                  'order'   : '-createdAt',
+        },
       });
 
     };

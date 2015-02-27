@@ -23,7 +23,9 @@
 
       userFactory.register($scope.user)
         .success( function(data) {
-          $location.path('/user');
+          $cookieStore.put('userId', data.objectId);
+          $cookieStore.put('sessionToken', data.sessionToken);
+          $location.path('/view');
         })
         .error( function(data) {
           $scope.err = true;

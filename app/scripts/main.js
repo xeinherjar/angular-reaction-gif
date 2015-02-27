@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('reaction-gifs', ['ngRoute'])
+  angular.module('reaction-gifs', ['ngRoute', 'ngCookies'])
 
   .constant({
     parse: {
@@ -48,7 +48,29 @@
     });
 
 
-  });
+  })
+
+  .run(
+           ['userFactory', '$rootScope', '$location', 'parse',
+    function(userFactory,   $rootScope,   $location,   parse) {
+      $rootScope.$on('$routeChangeStart', function(event) {
+        var path = $location.path();
+        if(!userFactory.checkUserStatus()) { 
+          switch (path) {
+            case '/':
+            case '/login':
+            case '/register':
+            case '/logout':
+              return;
+            default:
+              $location.path('/');
+          }
+        }
+
+
+      });
+    }
+  ]);
 
 
 
