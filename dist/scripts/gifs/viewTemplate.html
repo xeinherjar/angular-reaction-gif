@@ -1,0 +1,17 @@
+<p>GIFS</p>
+<div ng-repeat="image in images">
+  <h4 ng-if="image.user.objectId === userId"
+    ng-keypress="contentEditable($event, image)" contenteditable="true">
+    {{ image.title }}
+  </h4>
+ 
+  <h4 ng-if="image.user.objectId !== userId">
+    {{ image.title }}
+  </h4>
+  <img ng-src="{{ image.sourceUrl }}" />
+  <span class="uploader">{{ image.user.username }}</span>
+  <div ng-if="image.user.objectId === userId"
+    ng-click="remove(image.objectId)" class="del-btn">
+    Delete
+  </div>
+</div>

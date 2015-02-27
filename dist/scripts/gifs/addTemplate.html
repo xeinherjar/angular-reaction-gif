@@ -1,0 +1,16 @@
+<form ng-submit="add()">
+
+  <span class="lbl">Title: 
+    <input ng-model="reaction.title" type="text" />
+  </span>
+  <br />
+  <span class="lbl">URL:
+    <input ng-model="reaction.sourceUrl" type="text" />
+  </span>
+  <hr />
+
+  <button>Submit Reaction</button>
+
+  <span ng-show="err">{{ errMessage }}</span>
+
+</form>
