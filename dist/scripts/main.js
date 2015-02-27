@@ -156,8 +156,8 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory',
-    function($scope,   $location,   userFactory) {
+           ['$scope', '$location', 'userFactory', '$cookieStore',
+    function($scope,   $location,   userFactory,   $cookieStore) {
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.pw) {
