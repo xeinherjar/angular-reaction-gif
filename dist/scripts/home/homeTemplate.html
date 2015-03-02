@@ -1,7 +1,9 @@
 25 Most Recently Added Gifs
 
-<div ng-repeat="image in images">
-  <h4>{{ image.title }}</h4>
+<div ng-repeat="image in images" class="row panel panel-spacing">
+  <div class="large-12 columns">
+  <blockquote>{{ image.title }}</blockquote>
   <img ng-src="{{ image.sourceUrl }}" />
-  <span class="uploader">{{ image.user.username }}</span>
+  <h6 class="subheader uploader">{{ image.user.username }}</h6>
+  </div>
 </div>

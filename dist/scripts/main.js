@@ -181,7 +181,7 @@
     function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     $scope.register = function() {
-      if ($scope.user.password !== $scope.pw) {
+      if ($scope.user.password !== $scope.user.pw) {
         $scope.err = true;
         $scope.errMessage = "Passwords have to match!";
         return;
@@ -189,7 +189,7 @@
 
       if ($scope.user.password.length < 8) {
         $scope.err = true;
-        $scope.errMessage = "Passwords must be at least 8 characters";
+        $scope.errMessage = "Password must be at least 8 characters";
         return;
       }
 
@@ -398,6 +398,7 @@
         e.preventDefault();
         var oldTitle = el.title;
         var newTitle = e.currentTarget.innerText;
+        console.log(e.currentTarget);
         gifFactory.update(el.objectId, { title: newTitle })
           .success( function(data) {
             el.title = newTitle;

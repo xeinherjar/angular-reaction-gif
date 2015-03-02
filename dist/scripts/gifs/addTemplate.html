@@ -1,16 +1,25 @@
 <form ng-submit="add()">
-
-  <span class="lbl">Title: 
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Title:</span>
+  </div>
+  <div class="small-9 large-10 columns">
     <input ng-model="reaction.title" type="text" />
-  </span>
-  <br />
-  <span class="lbl">URL:
+  </div>
+</div>
+
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">URL:</span>
+  </div>
+  <div class="small-9 large-10 columns">
     <input ng-model="reaction.sourceUrl" type="text" />
-  </span>
+  </div>
+</div>
+
   <hr />
 
-  <button>Submit Reaction</button>
+  <button class="radius button">Submit Reaction</button>
 
-  <span ng-show="err">{{ errMessage }}</span>
-
+  <span class="error" ng-show="err">{{ errMessage }}</span>
 </form>

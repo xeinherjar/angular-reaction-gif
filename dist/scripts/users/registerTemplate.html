@@ -1,10 +1,44 @@
 <form ng-submit="register()">
 
-  <input type="text"     ng-model="user.username"  placeholder="username" />
-  <input type="text"     ng-model="user.email"     placeholder="email@domain.com" />
-  <input type="password" ng-model="user.password"  placeholder="password" />
-  <input type="password" ng-model="pw"             placeholder="password" />
-  <input type="submit" />
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Username:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="text"     ng-model="user.username"  placeholder="bengie123" />
+  </div>
+</div>
 
-  <span ng-show="err">{{ errMessage }}</span>
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">E-Mail:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="text" ng-model="user.email" placeholder="email@domain.com" />
+  </div>
+</div>
+
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Password:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="password" ng-model="user.password" placeholder="********" />
+  </div>
+</div>
+
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Password:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="password" ng-model="user.pw" placeholder="********" />
+  </div>
+</div>
+
+  <hr />
+
+  <input class="success radius button" type="submit" />
+
+  <span ng-show="err" class="error">{{ errMessage }}</span>
 </form>
