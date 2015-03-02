@@ -4,9 +4,13 @@
 
   angular.module('reaction-gifs')
 
-  .controller('viewController', 
-           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore', '$routeParams',
-    function($scope,   parse,   $location,   gifFactory,   $cookieStore,   $routeParams) {
+  .controller('viewController',
+           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore',
+            '$routeParams',
+    function($scope,   parse,   $location,   gifFactory,   $cookieStore,
+             $routeParams) {
+
+    window.document.title = "What about llamas?";
 
     $scope.userId = $cookieStore.get('userId');
 
@@ -52,7 +56,7 @@
             e.currentTarget.blur();
           })
           .error( function(data) {
-            
+
           });
         return;
       }

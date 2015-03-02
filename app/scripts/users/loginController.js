@@ -5,8 +5,11 @@
   angular.module('reaction-gifs')
 
   .controller('loginController',
-           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
-    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', 
+    function($scope,   $location,   userFactory,   $cookieStore) {
+
+    window.document.title = "Login!";
+
     $scope.login = function() {
       userFactory.login($scope.user)
         .success( function(data) {

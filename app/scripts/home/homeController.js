@@ -4,10 +4,12 @@
 
   angular.module('reaction-gifs')
 
-  .controller('homeController', 
+  .controller('homeController',
            ['$scope', '$http', 'gifFactory',
     function($scope,   $http,   gifFactory) {
-                        
+
+    window.document.title = "Look around";
+
     $scope.load = function() {
       gifFactory.list()
        .success( function(data) {

@@ -5,8 +5,10 @@
   angular.module('reaction-gifs')
 
   .controller('addController', 
-           ['$scope', 'gifFactory', '$location', '$cookieStore',
+           ['$scope', 'gifFactory', '$location', '$cookieStore', 
     function($scope,   gifFactory,   $location,   $cookieStore) {
+
+    window.document.title = "Feed me your gifs";
 
     var uid = $cookieStore.get('userId');
     var acl = {};
