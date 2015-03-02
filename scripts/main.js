@@ -115,10 +115,12 @@
 
   angular.module('reaction-gifs')
 
-  .controller('homeController', 
+  .controller('homeController',
            ['$scope', '$http', 'gifFactory',
     function($scope,   $http,   gifFactory) {
-                        
+
+    window.document.title = "Look around";
+
     $scope.load = function() {
       gifFactory.list()
        .success( function(data) {
@@ -146,8 +148,11 @@
   angular.module('reaction-gifs')
 
   .controller('loginController',
-           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
-    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', 
+    function($scope,   $location,   userFactory,   $cookieStore) {
+
+    window.document.title = "Login!";
+
     $scope.login = function() {
       userFactory.login($scope.user)
         .success( function(data) {
@@ -177,8 +182,10 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
-    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
+           ['$scope', '$location', 'userFactory', '$cookieStore',
+    function($scope,   $location,   userFactory,   $cookieStore) {
+
+    window.document.title = "Register";
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.user.pw) {
@@ -305,8 +312,10 @@
   angular.module('reaction-gifs')
 
   .controller('addController', 
-           ['$scope', 'gifFactory', '$location', '$cookieStore',
+           ['$scope', 'gifFactory', '$location', '$cookieStore', 
     function($scope,   gifFactory,   $location,   $cookieStore) {
+
+    window.document.title = "Feed me your gifs";
 
     var uid = $cookieStore.get('userId');
     var acl = {};
@@ -368,9 +377,13 @@
 
   angular.module('reaction-gifs')
 
-  .controller('viewController', 
-           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore', '$routeParams',
-    function($scope,   parse,   $location,   gifFactory,   $cookieStore,   $routeParams) {
+  .controller('viewController',
+           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore',
+            '$routeParams',
+    function($scope,   parse,   $location,   gifFactory,   $cookieStore,
+             $routeParams) {
+
+    window.document.title = "What about llamas?";
 
     $scope.userId = $cookieStore.get('userId');
 
@@ -416,7 +429,7 @@
             e.currentTarget.blur();
           })
           .error( function(data) {
-            
+
           });
         return;
       }
