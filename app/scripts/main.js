@@ -33,6 +33,12 @@
       templateUrl: 'scripts/gifs/viewTemplate.html',
     });
 
+    $routeProvider.when('/view/:page', {
+      controller : 'viewController',
+      templateUrl: 'scripts/gifs/viewTemplate.html',
+    });
+
+
     $routeProvider.when('/login', {
       controller : 'loginController',
       templateUrl: 'scripts/users/loginTemplate.html',

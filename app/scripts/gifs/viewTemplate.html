@@ -1,4 +1,3 @@
-<p>GIFS</p>
 <div ng-repeat="image in images">
   <h4 ng-if="image.user.objectId === userId"
     ng-keypress="contentEditable($event, image)" contenteditable="true">
@@ -14,4 +13,7 @@
     ng-click="remove(image.objectId)" class="del-btn">
     Delete
   </div>
+</div>
+<div>
+  Page   of {{ pages }}
 </div>

@@ -43,6 +43,7 @@
                   'order'   : '-createdAt',
                   'limit'   : limit,
                   'skip'    : page * limit,
+                  'count'   : 1,
         },
       });
 
