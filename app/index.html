@@ -11,6 +11,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
     <link rel="stylesheet" href="../bower_components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="../bower_components/foundation-icon-fonts/foundation-icons.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -23,15 +24,27 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div class="nav-container" ng-controller="navController">
-      <ul class="nav">
-        <a href="#/"><li>Home</li></a>
-        <a href="#/view"><li>View</li></a>
-        <a href="#/add"><li>Add</li></a>
-        <a href="#/login" ng-hide="loggedIn"><li>Login</li></a>
-        <a href="#/register" ng-hide="loggedIn"><li>Register</li></a>
-        <a href="#/logout" ng-show="loggedIn" ng-click="logout()"><li>Logout</li></a>
-      </ul>
+    <div class="icon-bar four-up" ng-controller="navController">
+      <a class="item" href="#/">
+        <i class="fi-home"></i>
+        <label>Home</label>
+      </a>
+      <a class="item" href="#/view">
+        <i class="fi-photo"></i>
+        <label>View</label>
+      </a>
+      <a class="item" href="#/add">
+        <i class="fi-plus"></i>
+        <label>Add</label>
+      </a>
+      <a class="item" href="#/login" ng-hide="loggedIn">
+        <i class="fi-torso"></i>
+        <label>Login</lanel>
+      </a>
+      <a href="#/logout" ng-show="loggedIn" ng-click="logout()">
+        <i class="fi-x-circle"></i>
+        <label>Logout</label>
+      </a>
     </div>
     <div class="row">
       <div class="large-12 columns">
@@ -47,6 +60,10 @@
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="../bower_components/foundation/js/foundation.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
