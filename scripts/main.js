@@ -33,6 +33,12 @@
       templateUrl: 'scripts/gifs/viewTemplate.html',
     });
 
+    $routeProvider.when('/view/:page', {
+      controller : 'viewController',
+      templateUrl: 'scripts/gifs/viewTemplate.html',
+    });
+
+
     $routeProvider.when('/login', {
       controller : 'loginController',
       templateUrl: 'scripts/users/loginTemplate.html',
@@ -352,15 +358,17 @@
   angular.module('reaction-gifs')
 
   .controller('viewController', 
-           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore',
-    function($scope,   parse,   $location,   gifFactory,   $cookieStore) {
+           ['$scope', 'parse', '$location', 'gifFactory', '$cookieStore', '$routeParams',
+    function($scope,   parse,   $location,   gifFactory,   $cookieStore,   $routeParams) {
 
     $scope.userId = $cookieStore.get('userId');
 
     $scope.load = function() {
-      gifFactory.list()
+      gifFactory.list($routeParams.page)
        .success( function(data) {
           $scope.images = data.results;
+          $scope.total  = data.count;
+          $scope.pages = (($scope.total / 25) >> 1) + 1;
         })
         .error( function(data) {
           $scope.err = true;
@@ -456,6 +464,7 @@
                   'order'   : '-createdAt',
                   'limit'   : limit,
                   'skip'    : page * limit,
+                  'count'   : 1,
         },
       });
 
