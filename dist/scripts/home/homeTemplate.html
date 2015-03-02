@@ -1,4 +1,7 @@
-<p>Home View</p>
+25 Most Recently Added Gifs
 
-<a href="#/login">Login</a>
-<a href="#/register">Register</a>
+<div ng-repeat="image in images">
+  <h4>{{ image.title }}</h4>
+  <img ng-src="{{ image.sourceUrl }}" />
+  <span class="uploader">{{ image.user.username }}</span>
+</div>

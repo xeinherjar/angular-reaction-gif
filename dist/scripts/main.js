@@ -109,9 +109,24 @@
 
   angular.module('reaction-gifs')
 
-  .controller('homeController', ['$scope', 'parse', '$http', '$location',
-                         function($scope,   parse,   $http,   $location) {
+  .controller('homeController', 
+           ['$scope', '$http', 'gifFactory',
+    function($scope,   $http,   gifFactory) {
+                        
+    $scope.load = function() {
+      gifFactory.list()
+       .success( function(data) {
+          $scope.images = data.results;
+        })
+        .error( function(data) {
+          $scope.err = true;
+          $scope.errMessage = data.error;
+        });
+    };
 
+
+
+    $scope.load();
 
     }
   ]);
@@ -156,8 +171,8 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory', '$cookieStore',
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.pw) {
@@ -174,9 +189,9 @@
 
       userFactory.register($scope.user)
         .success( function(data) {
-          $cookieStore.put('userId', data.objectId);
-          $cookieStore.put('sessionToken', data.sessionToken);
+          userFactory.setUserCookieAndSession(data);
           $location.path('/view');
+          $rootScope.$broadcast('loginEvent', true);
         })
         .error( function(data) {
           $scope.err = true;
@@ -429,13 +444,18 @@
       );
     };
 
-    var list = function() {
+    var list = function(page) {
+      var limit = 25;
+      page = page || 0;
+
       return $http({
         headers: parse.config.headers,
         url: parse.Url + 'classes/gif',
         method: 'GET',
         params: { 'include' : 'user',
                   'order'   : '-createdAt',
+                  'limit'   : limit,
+                  'skip'    : page * limit,
         },
       });
 
