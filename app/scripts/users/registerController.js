@@ -5,8 +5,8 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory', '$cookieStore',
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     $scope.register = function() {
       if ($scope.user.password !== $scope.pw) {
@@ -23,9 +23,9 @@
 
       userFactory.register($scope.user)
         .success( function(data) {
-          $cookieStore.put('userId', data.objectId);
-          $cookieStore.put('sessionToken', data.sessionToken);
+          userFactory.setUserCookieAndSession(data);
           $location.path('/view');
+          $rootScope.$broadcast('loginEvent', true);
         })
         .error( function(data) {
           $scope.err = true;
