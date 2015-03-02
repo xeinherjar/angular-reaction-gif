@@ -31,13 +31,18 @@
       );
     };
 
-    var list = function() {
+    var list = function(page) {
+      var limit = 25;
+      page = page || 0;
+
       return $http({
         headers: parse.config.headers,
         url: parse.Url + 'classes/gif',
         method: 'GET',
         params: { 'include' : 'user',
                   'order'   : '-createdAt',
+                  'limit'   : limit,
+                  'skip'    : page * limit,
         },
       });
 

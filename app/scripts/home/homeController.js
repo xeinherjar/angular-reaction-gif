@@ -4,9 +4,24 @@
 
   angular.module('reaction-gifs')
 
-  .controller('homeController', ['$scope', 'parse', '$http', '$location',
-                         function($scope,   parse,   $http,   $location) {
+  .controller('homeController', 
+           ['$scope', '$http', 'gifFactory',
+    function($scope,   $http,   gifFactory) {
+                        
+    $scope.load = function() {
+      gifFactory.list()
+       .success( function(data) {
+          $scope.images = data.results;
+        })
+        .error( function(data) {
+          $scope.err = true;
+          $scope.errMessage = data.error;
+        });
+    };
 
+
+
+    $scope.load();
 
     }
   ]);
