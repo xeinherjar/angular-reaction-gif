@@ -8,14 +8,25 @@
            ['$scope', 'gifFactory', '$location', '$cookieStore',
     function($scope,   gifFactory,   $location,   $cookieStore) {
 
+    var uid = $cookieStore.get('userId');
+    var acl = {};
+    acl[uid] = {
+      'read'  : true,
+      'write' : true
+    };
+    acl['*'] = {
+      'read'  : true,
+    };
+
     $scope.reaction = {
       title : "",
       sourceUrl : "",
-      user: {
+      user : {
         __type: 'Pointer',
         className: '_User',
-        objectId: $cookieStore.get('userId'), 
-      }    
+        objectId: uid, 
+      },
+      ACL : acl,
     };
 
     $scope.add = function() {
