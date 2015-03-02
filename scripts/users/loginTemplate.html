@@ -1,8 +1,27 @@
 <form ng-submit="login()">
 
-  <input type="text"     ng-model="user.username"  placeholder="username" />
-  <input type="password" ng-model="user.password"  placeholder="password" />
-  <input type="submit" />
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Username:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="text" ng-model="user.username" placeholder="bengie123" />
+  </div>
+</div>
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix">Password:</span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <input type="password" ng-model="user.password" placeholder="********" />
+  </div>
+</div>
 
-  <span ng-show="err">{{ errMessage }}</span>
+  <hr />
+
+  <input class="success radius button" type="submit" />
+
+  <span ng-show="err" class="error">{{ errMessage }}</span>
 </form>
+
+<a href="#/register">Need an account?  Sign up here.</a>
