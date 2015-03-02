@@ -45,6 +45,7 @@
         e.preventDefault();
         var oldTitle = el.title;
         var newTitle = e.currentTarget.innerText;
+        console.log(e.currentTarget);
         gifFactory.update(el.objectId, { title: newTitle })
           .success( function(data) {
             el.title = newTitle;
