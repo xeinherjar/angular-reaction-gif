@@ -17,9 +17,16 @@
     $scope.load = function() {
       gifFactory.list($routeParams.page)
        .success( function(data) {
+         console.log(data);
           $scope.images = data.results;
           $scope.total  = data.count;
-          $scope.pages = (($scope.total / 25) >> 1) + 1;
+          $scope.pages = Math.ceil($scope.total / 25);
+
+          $scope.page = $routeParams.page || 1;
+          $scope.pageCount = [];
+          for (var i = 1; i <= $scope.pages; i++) {
+            $scope.pageCount.push(i);
+          }
         })
         .error( function(data) {
           $scope.err = true;
@@ -29,14 +36,10 @@
 
 
 
-    $scope.remove = function(id) {
+    $scope.remove = function(id, index) {
       gifFactory.remove(id)
         .success( function(data) {
-          for (var i = 0; i < $scope.images.length; i++) {
-            if ($scope.images[i].objectId === id) {
-              $scope.images.splice(i, 1);
-            }
-          }
+          $scope.images.splice(index, 1);
         })
         .error( function(data) {
           console.log(data);

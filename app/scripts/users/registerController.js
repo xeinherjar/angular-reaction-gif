@@ -5,8 +5,8 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory', '$cookieStore',
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     window.document.title = "Register";
 

@@ -5,8 +5,8 @@
   angular.module('reaction-gifs')
 
   .controller('loginController',
-           ['$scope', '$location', 'userFactory', '$cookieStore', 
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     window.document.title = "Login!";
 
@@ -14,8 +14,8 @@
       userFactory.login($scope.user)
         .success( function(data) {
           userFactory.setUserCookieAndSession(data);
-         $location.path('/view');
-         $rootScope.$broadcast('loginEvent', true);
+          $location.path('/view');
+          $rootScope.$broadcast('loginEvent', true);
         })
         .error( function(data) {
           $scope.err = true;

@@ -9,15 +9,23 @@
       {{ image.title }}
     </blockquote>
     <img ng-src="{{ image.sourceUrl }}" />
+    <div if-ng="image.tags"> 
+      <a ng-repeat="tag in image.tags" 
+        href="#/tags/{{tag}}" class="tags">{{ tag }}</a>
+    </div>
     <h6 class="subheader uploader">{{ image.user.username }}</h6>
     <div ng-if="image.user.objectId === userId"
-      ng-click="remove(image.objectId)" class="label alert">
+      ng-click="remove(image.objectId, $index)" class="label alert">
       Delete
     </div>
   </div>
 </div>
 
-
-<div>
-  Page   of {{ pages }}
+<div class="pagination-centered">
+  <h4>Page</h4>
+  <ul class="pagination">
+    <li ng-repeat="p in pageCount">
+      <a href="#/view/{{p}}">{{ p }}</a>
+    </li>
+  </ul>
 </div>

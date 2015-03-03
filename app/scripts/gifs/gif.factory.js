@@ -33,7 +33,8 @@
 
     var list = function(page) {
       var limit = 25;
-      page = page || 0;
+      page = page || 1;
+      page -= 1;
 
       return $http({
         headers: parse.config.headers,

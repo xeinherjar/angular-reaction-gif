@@ -44,14 +44,30 @@
         return;
       }
 
+      // split on space
+      // make sure each begins with # or add # if missing?
+      var hashTags = $scope.reaction.tags.replace(/,/g, ' ')
+                             .replace(/ +/g, ' ').split(' ');
+      for (var i = 0; i < hashTags.length; i++) {
+        if (hashTags[i][0] === '#') {
+          hashTags[i] = hashTags[i].substring(1);  
+        }
+        
+        hashTags[i] = hashTags[i].toUpperCase();
+      }
+
+      $scope.reaction.tags = hashTags;
+
+
       gifFactory.add($scope.reaction)
         .success( function(data) {
-          $location.path('/view');
+          $location.path('/view/1');
         })
         .error( function(data) {
           console.log("Boo :(");
           console.log(data);
         });
+
     };
 
 
