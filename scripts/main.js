@@ -148,8 +148,8 @@
   angular.module('reaction-gifs')
 
   .controller('loginController',
-           ['$scope', '$location', 'userFactory', '$cookieStore', 
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     window.document.title = "Login!";
 
@@ -157,8 +157,8 @@
       userFactory.login($scope.user)
         .success( function(data) {
           userFactory.setUserCookieAndSession(data);
-         $location.path('/view');
-         $rootScope.$broadcast('loginEvent', true);
+          $location.path('/view');
+          $rootScope.$broadcast('loginEvent', true);
         })
         .error( function(data) {
           $scope.err = true;
@@ -182,8 +182,8 @@
   angular.module('reaction-gifs')
 
   .controller('registerController',
-           ['$scope', '$location', 'userFactory', '$cookieStore',
-    function($scope,   $location,   userFactory,   $cookieStore) {
+           ['$scope', '$location', 'userFactory', '$cookieStore', '$rootScope',
+    function($scope,   $location,   userFactory,   $cookieStore,   $rootScope) {
 
     window.document.title = "Register";
 
@@ -351,14 +351,30 @@
         return;
       }
 
+      // split on space
+      // make sure each begins with # or add # if missing?
+      var hashTags = $scope.reaction.tags.replace(/,/g, ' ')
+                             .replace(/ +/g, ' ').split(' ');
+      for (var i = 0; i < hashTags.length; i++) {
+        if (hashTags[i][0] === '#') {
+          hashTags[i] = hashTags[i].substring(1);  
+        }
+        
+        hashTags[i] = hashTags[i].toUpperCase();
+      }
+
+      $scope.reaction.tags = hashTags;
+
+
       gifFactory.add($scope.reaction)
         .success( function(data) {
-          $location.path('/view');
+          $location.path('/view/1');
         })
         .error( function(data) {
           console.log("Boo :(");
           console.log(data);
         });
+
     };
 
 
@@ -390,9 +406,16 @@
     $scope.load = function() {
       gifFactory.list($routeParams.page)
        .success( function(data) {
+         console.log(data);
           $scope.images = data.results;
           $scope.total  = data.count;
-          $scope.pages = (($scope.total / 25) >> 1) + 1;
+          $scope.pages = Math.ceil($scope.total / 25);
+
+          $scope.page = $routeParams.page || 1;
+          $scope.pageCount = [];
+          for (var i = 1; i <= $scope.pages; i++) {
+            $scope.pageCount.push(i);
+          }
         })
         .error( function(data) {
           $scope.err = true;
@@ -402,14 +425,10 @@
 
 
 
-    $scope.remove = function(id) {
+    $scope.remove = function(id, index) {
       gifFactory.remove(id)
         .success( function(data) {
-          for (var i = 0; i < $scope.images.length; i++) {
-            if ($scope.images[i].objectId === id) {
-              $scope.images.splice(i, 1);
-            }
-          }
+          $scope.images.splice(index, 1);
         })
         .error( function(data) {
           console.log(data);
@@ -479,7 +498,8 @@
 
     var list = function(page) {
       var limit = 25;
-      page = page || 0;
+      page = page || 1;
+      page -= 1;
 
       return $http({
         headers: parse.config.headers,
